@@ -1,1 +1,1 @@
-web: python slack-movies/main.py
+web: python main.py
