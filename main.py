@@ -6,15 +6,15 @@ from flask import (
 
 app = Flask(__name__)
 
-acronyms = get_acronyms()
-
-def expand_acronym(word):
-    return acronyms.get(word, word)
-
 def get_acronyms():
     with open('acronyms.txt') as acronyms:
         return {a.split('=')[0].strip(): a.split('=')[1].strip()
                 for a in acronyms.readlines()}
+
+acronyms = get_acronyms()
+
+def expand_acronym(word):
+    return acronyms.get(word, word)
 
 @app.route('/')
 def respond():
