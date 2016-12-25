@@ -8,7 +8,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def respond():
-    return request.args['text']
+    with open('slack_token') as slack_token:
+        token = slack_token.read().strip()
+    if request.args['token'] == token:
+        return request.args['text']
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
